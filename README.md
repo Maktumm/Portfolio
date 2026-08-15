@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Akihiko / Palmer — Next.js rebuild (GSAP edition)
 
-## Getting Started
+A Next.js 14 (App Router) + TypeScript + Tailwind rebuild matching
+https://palmer-template.framer.website/ — content, copy, pricing, and
+section order pulled directly from the live reference site (the uploaded
+files were a raw Framer static export: 19k+ lines of hashed classnames and
+Framer's own runtime JS, not something worth porting 1:1).
 
-First, run the development server:
+## Install
+
+```bash
+npm install
+```
+
+## Run
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Libraries used (and why)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **next / react / react-dom** — framework
+- **tailwindcss / postcss / autoprefixer** — styling
+- **gsap** + **@gsap/react** — all animation: `ScrollTrigger` reveals
+  (`components/Reveal.tsx`), the infinite logo/name marquees
+  (`components/Marquee.tsx`), the letter-by-letter "Practice." stagger in
+  `Experience.tsx`, and the FAQ accordion height tween
+- **lucide-react** — icons (menu, plus/minus, checkmarks)
+- **clsx** — conditional className helper
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Fonts load via `next/font/google` (Inter + Inter Tight) in `app/layout.tsx`.
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+  layout.tsx        → fonts + <html>/<body> shell
+  page.tsx           → assembles all sections in reference-site order
+  globals.css        → Tailwind directives + base styles
+lib/
+  images.ts           → mockPhoto() helper (see Images below)
+components/
+  Reveal.tsx          → GSAP ScrollTrigger fade/slide-up wrapper
+  Marquee.tsx          → GSAP infinite horizontal scroll
+  Navbar.tsx           → incl. "Based in Tokyo" micro-bar
+  Hero.tsx              → layered heading + marquee name
+  ClientLogos.tsx
+  Work.tsx               → Featured Works
+  Services.tsx
+  About.tsx               → Personal Profile
+  Experience.tsx           → GSAP "Practice." stagger + timeline
+  Testimonials.tsx
+  Awards.tsx                → tabbed stat + mini gallery
+  Pricing.tsx                 → $99 / $299 / $899 tiers
+  Blog.tsx
+  FAQ.tsx
+  Footer.tsx                    → closing marquee gallery
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Images
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The reference site uses licensed photography we can't legally copy into a
+template. Every image in this build goes through `lib/images.ts`'s
+`mockPhoto(seed, w, h)`, which points to **Picsum Photos**
+(https://picsum.photos) — a free placeholder-image service made exactly for
+this, no licensing/attribution issues, and each `seed` is stable so the same
+placeholder always renders in the same spot. Images render in grayscale by
+default (`.mono-photo` — matches the source's monochrome look) and lift to
+full color on hover.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**To go live:** replace `mockPhoto(...)` calls in each component with real
+`next/image` sources once you have final photography, and add that domain to
+`images.remotePatterns` in `next.config.js`.
