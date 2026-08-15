@@ -16,9 +16,9 @@ const interDisplay = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  title: "Akihiko® - Minimal Portfolio & Agency",
+  title: "MAKTUM® ",
   description:
-    "Akihiko, a minimal portfolio site, built for art direction, branding, strategy, and web design work based in Tokyo.",
+    "MAKTUM, a minimal portfolio site, built for art direction, branding, strategy, and web design work based in Tokyo.",
 };
 
 export default function RootLayout({
