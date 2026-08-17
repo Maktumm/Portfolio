@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Inter_Tight } from "next/font/google";
-import './globals.css'
+import "./globals.css";
 import SmoothScrollProvider from "@/components/smoothscrollprovider";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -16,21 +17,26 @@ const interDisplay = Inter_Tight({
 });
 
 export const metadata: Metadata = {
-  title: "MAKTUM® ",
+  title: "MAKTUM®",
   description:
     "MAKTUM, a minimal portfolio site, built for art direction, branding, strategy, and web design work based in Tokyo.",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className={`${inter.variable} ${interDisplay.variable}`}>
-      <SmoothScrollProvider>
-      <body>{children}</body>
-      </SmoothScrollProvider>
+    <html
+      lang="en"
+      className={`${inter.variable} ${interDisplay.variable}`}
+    >
+      <body>
+        <SmoothScrollProvider>
+          {children}
+        </SmoothScrollProvider>
+      </body>
     </html>
   );
 }

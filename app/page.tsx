@@ -16,10 +16,21 @@ export default function Home() {
   return (
     <main>
       <Navbar />
-      <Hero />
+
+      <section id="top">
+        <Hero />
+      </section>
+
       <ClientLogos />
-      <Work />
-      <Services />
+
+      <section id="work">
+        <Work />
+      </section>
+
+      <section id="services">
+        <Services />
+      </section>
+
       <About />
       <Experience />
       <Testimonials />
@@ -27,7 +38,10 @@ export default function Home() {
       <Pricing />
       <Blog />
       <FAQ />
-      <Footer />
+
+      <section id="contact">
+        <Footer />
+      </section>
     </main>
   );
 }
