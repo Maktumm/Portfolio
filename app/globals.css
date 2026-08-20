@@ -1,21 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-html {
-  scroll-behavior: smooth;
-}
+
 @layer base {
   html {
     @apply scroll-smooth;
   }
+
   body {
     @apply bg-ink text-paper antialiased;
   }
+
   ::selection {
     @apply bg-paper text-ink;
   }
 }
-
 @layer utilities {
   .container-px {
     @apply px-6 md:px-10 lg:px-16;
@@ -29,4 +28,20 @@ html {
   .mono-photo {
     @apply grayscale transition-[filter] duration-700 ease-out hover:grayscale-0;
   }
+}
+
+/* Hide the global custom cursor while Work is active */
+html.work-page,
+html.work-page body {
+  cursor: none !important;
+}
+
+html.work-page .custom-cursor {
+  display: none !important;
+}
+
+/* Make sure buttons/links don't restore the browser cursor */
+html.work-page button,
+html.work-page a {
+  cursor: none !important;
 }

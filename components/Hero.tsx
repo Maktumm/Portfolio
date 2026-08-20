@@ -1,5 +1,5 @@
 "use client";
-
+import img1 from "../app/Gemini_Generated_Image_62oef262oef262oe.jpg"
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -97,11 +97,12 @@ export default function Hero() {
         {/* ───────────────── TOP META ───────────────── */}
 
         <div className="grid grid-cols-2 border border-white/15 md:grid-cols-4">
-          <div className="hero-meta border-b border-r border-white/15 p-2.5 md:p-3 md:border-b-0">
-            <p className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] text-white/35">
+          <div className="hero-meta border-b border-r border-white/15 p-2.5 md:border-b-0 md:p-3">
+            <p className="text-[8px] uppercase tracking-[0.2em] text-white/35 md:text-[9px]">
               MAK™
             </p>
-            <p className="mt-0.5 md:mt-1 text-[9px] md:text-[10px] uppercase tracking-[0.12em] text-white/70">
+
+            <p className="mt-0.5 text-[9px] uppercase tracking-[0.12em] text-white/70 md:mt-1 md:text-[10px]">
               Creative Studio
             </p>
           </div>
@@ -110,6 +111,7 @@ export default function Hero() {
             <p className="text-[9px] uppercase tracking-[0.2em] text-white/35">
               Based in
             </p>
+
             <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-white/70">
               Dhaka, Bangladesh
             </p>
@@ -119,16 +121,18 @@ export default function Hero() {
             <p className="text-[9px] uppercase tracking-[0.2em] text-white/35">
               Available for
             </p>
+
             <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-white/70">
               Select Projects
             </p>
           </div>
 
-          <div className="hero-meta border-b border-white/15 p-2.5 text-right md:p-3 md:border-b-0">
-            <p className="text-[8px] md:text-[9px] uppercase tracking-[0.2em] text-white/35">
+          <div className="hero-meta border-b border-white/15 p-2.5 text-right md:border-b-0 md:p-3">
+            <p className="text-[8px] uppercase tracking-[0.2em] text-white/35 md:text-[9px]">
               2026
             </p>
-            <p className="mt-0.5 md:mt-1 text-[9px] md:text-[10px] uppercase tracking-[0.12em] text-white/70">
+
+            <p className="mt-0.5 text-[9px] uppercase tracking-[0.12em] text-white/70 md:mt-1 md:text-[10px]">
               WDX® — 01
             </p>
           </div>
@@ -136,21 +140,20 @@ export default function Hero() {
 
         {/* ───────────────── MAIN ───────────────── */}
 
-        <div className="relative flex min-h-0 flex-1 flex-col justify-center py-3 md:py-6">
+        <div className="relative flex min-h-0 flex-1 flex-col justify-center py-2 md:py-6">
 
-          {/* Intro & Heading with Right Spacing for Desktop Image */}
+          {/* Intro + Heading */}
 
           <div className="relative z-10 max-w-full md:max-w-[660px]">
-            <div className="mb-2 hidden md:flex items-center gap-3">
+            <div className="mb-2 hidden items-center gap-3 md:flex">
               <span className="h-px w-8 bg-white/30" />
+
               <span className="hero-meta text-[9px] uppercase tracking-[0.2em] text-white/40">
                 Independent creative direction
               </span>
             </div>
 
-            {/* Main Heading (Compact & Perfectly Sized for Mobile) */}
-
-            <h1 className="font-display text-[7.8vw] font-semibold leading-[0.88] tracking-[-0.065em] md:text-[5.3vw]">
+            <h1 className="font-display text-[7.8vw] font-semibold leading-[0.78] tracking-[-0.065em] md:text-[5.3vw] md:leading-[0.88]">
               <span className="hero-title-line block overflow-hidden">
                 Pattern Dimensions
               </span>
@@ -164,12 +167,12 @@ export default function Hero() {
               </span>
 
               <span className="hero-title-line block overflow-hidden">
-                Bold イメージ。
+                Bold Images
               </span>
             </h1>
           </div>
 
-          {/* ───────────────── DESKTOP IMAGE (9:16) ───────────────── */}
+          {/* ───────────────── DESKTOP IMAGE ───────────────── */}
 
           <div
             className="
@@ -186,7 +189,7 @@ export default function Hero() {
           >
             <div className="relative aspect-[9/16] overflow-hidden rounded-lg border border-white/15 bg-white text-black shadow-2xl">
               <Image
-                src={mockPhoto("akihiko-hero", 800, 1422)}
+                src={img1}
                 alt="MAK creative portrait"
                 fill
                 sizes="230px"
@@ -208,12 +211,12 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* ───────────────── MOBILE IMAGE (16:9 Landscape, Rounded, Matches Reference) ───────────────── */}
+          {/* ───────────────── MOBILE IMAGE ───────────────── */}
 
-          <div className="hero-image relative my-3 w-full overflow-hidden rounded-2xl border border-white/15 bg-white text-black shadow-xl md:hidden">
+          <div className="hero-image relative my-2 w-full overflow-hidden rounded-2xl border border-white/15 bg-white text-black shadow-xl md:hidden">
             <div className="relative aspect-[16/9] w-full">
               <Image
-                src={mockPhoto("akihiko-hero", 1200, 675)}
+                src={img1}
                 alt="MAK creative portrait"
                 fill
                 sizes="100vw"
@@ -229,55 +232,92 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* ───────────────── SERVICES (Clean White Aesthetic Bar) ───────────────── */}
+          {/* ───────────────── SERVICES ───────────────── */}
 
-          <div className="hero-services relative z-10 mt-2 md:mt-5 overflow-hidden rounded-md bg-white text-black">
+          <div className="hero-services relative z-10 mt-2 overflow-hidden rounded-md bg-white text-black md:mt-5">
             <div className="hero-services-content grid grid-cols-4 md:grid-cols-6">
               {services.map((service, index) => (
                 <div
                   key={service.name}
-                  className={`flex items-center justify-between px-3 py-2 border-black/10 ${
+                  className={`flex items-center justify-between border-black/10 px-3 py-2 ${
                     index < 2 ? "border-b md:border-b-0" : ""
-                  } ${index % 2 === 0 ? "border-r md:border-r" : "border-r-0 md:border-r"} ${
+                  } ${
+                    index % 2 === 0
+                      ? "border-r md:border-r"
+                      : "border-r-0 md:border-r"
+                  } ${
                     index === 3 ? "md:border-r-0" : ""
                   }`}
                 >
-                  <span className="text-[6px] md:text-[9px] font-medium uppercase tracking-[0.14em] text-black">
+                  <span className="text-[6px] font-medium uppercase tracking-[0.14em] text-black md:text-[9px]">
                     {service.name}
                   </span>
-                  
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* ───────────────── GIANT MAK WORDMARK ───────────────── */}
+        {/* ───────────────── GIANT MAKTUM WORDMARK ───────────────── */}
 
-        <div className="hero-wordmark relative shrink-0 overflow-hidden border-t border-white/15 pt-1 flex items-end justify-between">
-          <div
-            className="
-              whitespace-nowrap
-              font-display
-              text-[20vw]
-              font-semibold
-              leading-[0.65]
-              tracking-[-0.09em]
-              text-white
-              md:text-[16vw]
-            "
-          >
-            MAKTUM
-          </div>
+        <div
+  className="
+    hero-wordmark
+    relative
+    mt-auto
+    mb-8
+    flex
+    shrink-0
+    items-end
+    justify-between
+    overflow-hidden
+    border-t
+    border-white/15
+    pt-3
 
-          <Link
-            href="#contact"
-            className="hidden md:flex items-center gap-1.5 pb-4 text-[10px] uppercase tracking-[0.2em] text-white/70 transition-colors hover:text-white"
-          >
-            Start a project
-            <ArrowUpRight className="h-3.5 w-3.5" />
-          </Link>
-        </div>
+    md:mb-3
+    md:pt-2
+  "
+>
+  <div
+    className="
+      translate-y-[-1vw]
+      whitespace-nowrap
+      font-display
+      text-[20vw]
+      font-semibold
+      leading-[0.7]
+      tracking-[-0.09em]
+      text-white
+
+      md:translate-y-[-0.7vw]
+      md:text-[16vw]
+    "
+  >
+    MAKTUM
+  </div>
+
+  <Link
+    href="#contact"
+    className="
+      hidden
+      items-center
+      gap-1.5
+      pb-5
+      text-[10px]
+      uppercase
+      tracking-[0.2em]
+      text-white/70
+      transition-colors
+      hover:text-white
+      md:flex
+    "
+  >
+    Start a project
+
+    <ArrowUpRight className="h-3.5 w-3.5" />
+  </Link>
+</div>
       </div>
     </section>
   );

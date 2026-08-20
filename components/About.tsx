@@ -30,7 +30,7 @@ export default function About() {
     <section ref={container} className="hairline">
       <div className=" animate-item container-px mx-auto max-w-content py-20 md:py-28">
         <Reveal>
-          <p className="eyebrow">(WDX® — 05) Personal Profile</p>
+          <p className="eyebrow">(WDX® — 04) Personal Profile</p>
         </Reveal>
 
         <div className=" animate-item mt-10 grid gap-4 sm:grid-cols-3">
