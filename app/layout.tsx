@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     siteName: "MAKTUM®",
     images: [
       {
-        url: "/metadata.png",
+        url: "/app/metadata.png",
         width: 1200,
         height: 630,
         alt: "MAKTUM®",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     title: "MAKTUM®",
     description:
       "MAKTUM — independent web developer creating expressive, performance-driven digital experiences.",
-    images: ["/metadata.png"],
+    images: ["/app/metadata.png"],
   },
 };
 
