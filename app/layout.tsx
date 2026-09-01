@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
-import SmoothScrollProvider from "@/components/smoothscrollprovider";
+
 import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({
@@ -62,9 +62,9 @@ export default function RootLayout({
       <body>
         <CustomCursor />
 
-        <SmoothScrollProvider>
+       
           {children}
-        </SmoothScrollProvider>
+        
       </body>
     </html>
   );

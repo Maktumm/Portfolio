@@ -49,7 +49,7 @@ export default function Navbar() {
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
-    e.preventDefault();
+
 
     if (lenis) {
       lenis.scrollTo(href, {
