@@ -1,14 +1,19 @@
-
 "use client";
 
-import Image from "next/image";
+import Image, {StaticImageData} from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { mockPhoto } from "@/lib/images";
 import Reveal from "./Reveal";
 import { Plus, Minus, X } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-
+import AlbaHover from "../public/smt.png"
+import Alba from "../public/alba.png"
+import storyvalut from "../public/story.png"
+import Blossom from "../public/blossom.png"
+import Blossom1 from "../public/4.bip.2878.png"
+import storyv from "../public/storyvault.png"
+import alba1 from "../public/alva.png"
 type ProjectType = "Frontend" | "Backend" | "Fullstack";
 
 interface Project {
@@ -17,32 +22,44 @@ interface Project {
   category: string;
   type: ProjectType;
   description: string;
+  href: string;
+  imageref?: StaticImageData;
+  imagemainref?:StaticImageData;
 }
 
 const projects: Project[] = [
   {
     index: "01",
-    name: "Sonder Goods",
-    category: "Branding",
+    name: "ALBA",
+    category: "Bakery",
     type: "Frontend",
     description:
       "A refined identity system created around tactile materials, bold typography, and a warm editorial direction.",
+    href: "https://alba-lyart.vercel.app/",
+    imageref: AlbaHover,
+    imagemainref:alba1,
   },
   {
     index: "02",
-    name: "Halo Wear",
+    name: "Story Vault",
     category: "Web Design",
     type: "Fullstack",
     description:
       "A fashion-forward digital experience combining expressive typography, immersive imagery, and fluid interactions.",
+    href: "https://storyvaults.netlify.app",
+    imageref: storyvalut,
+    imagemainref:storyv,
   },
   {
     index: "03",
-    name: "Lucent Lab",
+    name: "Blossom",
     category: "Creative Direction",
     type: "Frontend",
     description:
       "A complete creative direction built around experimental layouts, sharp visual language, and contemporary art direction.",
+    href: "https://blossom-hazel-omega.vercel.app/",
+    imageref: Blossom,
+    imagemainref:Blossom1,
   },
   {
     index: "04",
@@ -51,6 +68,7 @@ const projects: Project[] = [
     type: "Frontend",
     description:
       "A distinctive visual identity balancing organic forms with a structured, modern design system.",
+    href: "https://arc-and-bloom-example.com",
   },
   {
     index: "05",
@@ -59,6 +77,7 @@ const projects: Project[] = [
     type: "Fullstack",
     description:
       "An editorial portfolio experience designed to let the work breathe through minimal layouts and subtle motion.",
+    href: "https://atelier-nara-example.com",
   },
   {
     index: "06",
@@ -67,6 +86,7 @@ const projects: Project[] = [
     type: "Frontend",
     description:
       "An experimental 3D-driven visual experience focused on movement, depth, and cinematic transitions.",
+    href: "https://vanguard-example.com",
   },
   {
     index: "07",
@@ -75,6 +95,7 @@ const projects: Project[] = [
     type: "Backend",
     description:
       "A digital showcase for an interior studio with immersive imagery, spacious layouts, and architectural rhythm.",
+    href: "https://aura-space-example.com",
   },
   {
     index: "08",
@@ -83,6 +104,7 @@ const projects: Project[] = [
     type: "Fullstack",
     description:
       "A modern product interface designed around clarity, motion, and a highly responsive interaction system.",
+    href: "https://kinetix-example.com",
   },
 ];
 
@@ -92,14 +114,11 @@ const PROJECTS_PER_LOAD = 5;
 export default function Work() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const [mobileOpenIndex, setMobileOpenIndex] =
-    useState<number | null>(null);
+  const [mobileOpenIndex, setMobileOpenIndex] = useState<number | null>(null);
 
-  const [visibleCount, setVisibleCount] =
-    useState(INITIAL_PROJECTS);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_PROJECTS);
 
-  const [selectedProject, setSelectedProject] =
-    useState<number | null>(null);
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   const sectionRef = useRef<HTMLElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -119,10 +138,7 @@ export default function Work() {
    * Lock page scrolling while desktop modal is open.
    */
   useEffect(() => {
-    if (
-      selectedProject !== null &&
-      window.innerWidth >= 768
-    ) {
+    if (selectedProject !== null && window.innerWidth >= 768) {
       document.body.style.overflow = "hidden";
     }
 
@@ -143,16 +159,10 @@ export default function Work() {
       }
     };
 
-    window.addEventListener(
-      "keydown",
-      handleKeyDown
-    );
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      window.removeEventListener(
-        "keydown",
-        handleKeyDown
-      );
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [selectedProject]);
 
@@ -180,28 +190,20 @@ export default function Work() {
         ease: "power3.out",
       });
 
-      const handleMouseMove = (
-        event: MouseEvent
-      ) => {
+      const handleMouseMove = (event: MouseEvent) => {
         xTo(event.clientX);
         yTo(event.clientY);
       };
 
-      window.addEventListener(
-        "mousemove",
-        handleMouseMove
-      );
+      window.addEventListener("mousemove", handleMouseMove);
 
       return () => {
-        window.removeEventListener(
-          "mousemove",
-          handleMouseMove
-        );
+        window.removeEventListener("mousemove", handleMouseMove);
       };
     },
     {
       scope: sectionRef,
-    }
+    },
   );
 
   /*
@@ -210,7 +212,7 @@ export default function Work() {
   useGSAP(
     () => {
       const reduced = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
+        "(prefers-reduced-motion: reduce)",
       ).matches;
 
       if (reduced) {
@@ -239,12 +241,12 @@ export default function Work() {
             start: "top 80%",
             once: true,
           },
-        }
+        },
       );
     },
     {
       scope: sectionRef,
-    }
+    },
   );
 
   /*
@@ -256,24 +258,15 @@ export default function Work() {
         return;
       }
 
-      const startIndex =
-        visibleCount - PROJECTS_PER_LOAD;
+      const startIndex = visibleCount - PROJECTS_PER_LOAD;
 
       const newItems =
-        sectionRef.current?.querySelectorAll(
-          `[data-project-index]`
-        );
+        sectionRef.current?.querySelectorAll(`[data-project-index]`);
 
       if (!newItems) return;
 
-      const elements = Array.from(
-        newItems
-      ).filter((element) => {
-        const index = Number(
-          element.getAttribute(
-            "data-project-index"
-          )
-        );
+      const elements = Array.from(newItems).filter((element) => {
+        const index = Number(element.getAttribute("data-project-index"));
 
         return index >= startIndex;
       });
@@ -292,35 +285,29 @@ export default function Work() {
           duration: 0.8,
           stagger: 0.08,
           ease: "power3.out",
-        }
+        },
       );
     },
     {
       scope: sectionRef,
       dependencies: [visibleCount],
-  });
+    },
+  );
 
   /*
    * Reveal next batch.
    */
   const handleSeeMore = () => {
     setVisibleCount((current) =>
-      Math.min(
-        current + PROJECTS_PER_LOAD,
-        projects.length
-      )
+      Math.min(current + PROJECTS_PER_LOAD, projects.length),
     );
   };
 
   /*
    * Mobile project accordion.
    */
-  const toggleMobileProject = (
-    index: number
-  ) => {
-    setMobileOpenIndex((current) =>
-      current === index ? null : index
-    );
+  const toggleMobileProject = (index: number) => {
+    setMobileOpenIndex((current) => (current === index ? null : index));
   };
 
   /*
@@ -332,13 +319,9 @@ export default function Work() {
     setSelectedProject(index);
   };
 
-  const selected =
-    selectedProject !== null
-      ? projects[selectedProject]
-      : null;
+  const selected = selectedProject !== null ? projects[selectedProject] : null;
 
-  const visibleProjects =
-    projects.slice(0, visibleCount);
+  const visibleProjects = projects.slice(0, visibleCount);
 
   return (
     <>
@@ -426,46 +409,39 @@ export default function Work() {
             "
           >
             <ul className="flex w-full flex-col">
-              {visibleProjects.map(
-                (project, index) => {
-                  const isMobileOpen =
-                    mobileOpenIndex === index;
+              {visibleProjects.map((project, index) => {
+                const isMobileOpen = mobileOpenIndex === index;
 
-                  return (
-                    <li
-  key={project.name}
-  data-project-index={index}
-  data-cursor="hide"
-  className="
-    work-reveal
-    group
-    border-b
-    border-white/10
-  "
-  onMouseEnter={() => {
-    setHoveredIndex(index);
-  }}
-  onMouseLeave={() => {
-    setHoveredIndex(null);
-  }}
->
-                      {/* PROJECT ROW */}
+                return (
+                  <li
+                    key={project.name}
+                    data-project-index={index}
+                    data-cursor="hide"
+                    className="
+                        work-reveal
+                        group
+                        border-b
+                        border-white/10
+                      "
+                    onMouseEnter={() => {
+                      setHoveredIndex(index);
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredIndex(null);
+                    }}
+                  >
+                    {/* PROJECT ROW */}
 
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (
-                            window.innerWidth >=
-                            768
-                          ) {
-                            openProject(index);
-                          } else {
-                            toggleMobileProject(
-                              index
-                            );
-                          }
-                        }}
-                        className="
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (window.innerWidth >= 768) {
+                          openProject(index);
+                        } else {
+                          toggleMobileProject(index);
+                        }
+                      }}
+                      className="
                           flex
                           w-full
                           cursor-pointer
@@ -476,18 +452,16 @@ export default function Work() {
                           text-left
                           md:py-6
                         "
-                        aria-expanded={
-                          typeof window !==
-                            "undefined" &&
-                          window.innerWidth < 768
-                            ? isMobileOpen
-                            : undefined
-                        }
-                      >
-                        {/* LEFT */}
+                      aria-expanded={
+                        typeof window !== "undefined" && window.innerWidth < 768
+                          ? isMobileOpen
+                          : undefined
+                      }
+                    >
+                      {/* LEFT */}
 
-                        <div
-                          className="
+                      <div
+                        className="
                             pointer-events-none
                             flex
                             min-w-0
@@ -495,11 +469,11 @@ export default function Work() {
                             gap-4
                             md:gap-8
                           "
-                        >
-                          {/* NUMBER */}
+                      >
+                        {/* NUMBER */}
 
-                          <span
-                            className="
+                        <span
+                          className="
                               shrink-0
                               font-mono
                               text-sm
@@ -508,14 +482,14 @@ export default function Work() {
                               duration-300
                               group-hover:text-gray-300
                             "
-                          >
-                            ({project.index})
-                          </span>
+                        >
+                          ({project.index})
+                        </span>
 
-                          {/* TITLE */}
+                        {/* TITLE */}
 
-                          <h3
-                            className="
+                        <h3
+                          className="
                               font-display
                               text-3xl
                               font-semibold
@@ -528,24 +502,24 @@ export default function Work() {
                               group-hover:text-gray-300
                               md:text-5xl
                             "
-                          >
-                            {project.name}
-                          </h3>
-                        </div>
+                        >
+                          {project.name}
+                        </h3>
+                      </div>
 
-                        {/* DESKTOP META */}
+                      {/* DESKTOP META */}
 
-                        <div
-                          className="
+                      <div
+                        className="
                             hidden
                             shrink-0
                             items-center
                             gap-6
                             md:flex
                           "
-                        >
-                          <span
-                            className="
+                      >
+                        <span
+                          className="
                               text-xs
                               uppercase
                               tracking-[0.16em]
@@ -554,12 +528,12 @@ export default function Work() {
                               duration-300
                               group-hover:text-gray-300
                             "
-                          >
-                            {project.category}
-                          </span>
+                        >
+                          {project.category}
+                        </span>
 
-                          <span
-                            className="
+                        <span
+                          className="
                               min-w-[75px]
                               text-right
                               text-[10px]
@@ -570,15 +544,15 @@ export default function Work() {
                               duration-300
                               group-hover:text-gray-400
                             "
-                          >
-                            {project.type}
-                          </span>
-                        </div>
+                        >
+                          {project.type}
+                        </span>
+                      </div>
 
-                        {/* MOBILE PLUS / MINUS */}
+                      {/* MOBILE PLUS / MINUS */}
 
-                        <div
-                          className="
+                      <div
+                        className="
                             shrink-0
                             text-gray-400
                             transition-all
@@ -586,21 +560,21 @@ export default function Work() {
                             group-hover:text-white
                             md:hidden
                           "
-                        >
-                          {isMobileOpen ? (
-                            <Minus className="h-5 w-5" />
-                          ) : (
-                            <Plus className="h-5 w-5" />
-                          )}
-                        </div>
-                      </button>
+                      >
+                        {isMobileOpen ? (
+                          <Minus className="h-5 w-5" />
+                        ) : (
+                          <Plus className="h-5 w-5" />
+                        )}
+                      </div>
+                    </button>
 
-                      {/* =================================================
+                    {/* =================================================
                           MOBILE IMAGE
                           ================================================= */}
 
-                      <div
-                        className={`
+                    <div
+                      className={`
                           overflow-hidden
                           transition-all
                           duration-700
@@ -612,9 +586,9 @@ export default function Work() {
                               : "max-h-0 opacity-0"
                           }
                         `}
-                      >
-                        <div
-                          className="
+                    >
+                      <div
+                        className="
                             relative
                             aspect-[4/3]
                             w-full
@@ -624,26 +598,22 @@ export default function Work() {
                             border-white/10
                             bg-white/5
                           "
-                        >
-                          <Image
-                            src={mockPhoto(
-                              `work-${project.index}`,
-                              800,
-                              600
-                            )}
-                            alt={project.name}
-                            fill
-                            sizes="100vw"
-                            className="
+                      >
+                        <Image
+                          src={project.imagemainref ? project.imagemainref : mockPhoto(`work-${project.index}`, 600, 800)}
+                          alt={project.name}
+                          fill
+                          sizes="100vw"
+                          className="
                               object-cover
                               transition-transform
                               duration-700
                               ease-out
                             "
-                          />
+                        />
 
-                          <div
-                            className="
+                        <div
+                          className="
                               absolute
                               inset-0
                               bg-gradient-to-t
@@ -651,58 +621,64 @@ export default function Work() {
                               via-transparent
                               to-transparent
                             "
-                          />
-                        </div>
+                        />
+                      </div>
 
-                        <div
-                          className="
+                      <div
+                        className="
                             mt-3
                             flex
                             items-center
                             justify-between
                             px-1
                           "
-                        >
-                          <div>
-                            <p
-                              className="
+                      >
+                        <div>
+                          <p
+                            className="
                                 text-sm
                                 font-medium
                                 text-gray-300
                               "
-                            >
-                              {project.category}
-                            </p>
+                          >
+                            {project.category}
+                          </p>
 
-                            <p
-                              className="
+                          <p
+                            className="
                                 mt-1
                                 text-[10px]
                                 uppercase
                                 tracking-[0.18em]
                                 text-gray-600
                               "
-                            >
-                              {project.type}
-                            </p>
-                          </div>
+                          >
+                            {project.type}
+                          </p>
+                        </div>
 
-                          <span
-                            className="
+                        <a
+                          href={project.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(event) => event.stopPropagation()}
+                          className="
                               text-[10px]
                               uppercase
                               tracking-[0.18em]
                               text-gray-500
+                              transition-colors
+                              duration-300
+                              hover:text-white
                             "
-                          >
-                            View Project ↗
-                          </span>
-                        </div>
+                        >
+                          View Project ↗
+                        </a>
                       </div>
-                    </li>
-                  );
-                }
-              )}
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
 
             {/* =====================================================
@@ -785,9 +761,9 @@ export default function Work() {
           </div>
         </div>
 
-        {/* =====================================================
+        {/* =========================================================
             DESKTOP FLOATING IMAGE CURSOR
-            ===================================================== */}
+            ========================================================= */}
 
         <div
           ref={cursorRef}
@@ -801,11 +777,7 @@ export default function Work() {
             hidden
             will-change-transform
             md:block
-            ${
-              hoveredIndex !== null
-                ? "opacity-100"
-                : "opacity-0"
-            }
+            ${hoveredIndex !== null ? "opacity-100" : "opacity-0"}
           `}
         >
           <div
@@ -823,20 +795,15 @@ export default function Work() {
           >
             {/* CURSOR IMAGES */}
 
-            {projects.map(
-              (project, index) => (
-                <Image
-                  key={project.name}
-                  src={mockPhoto(
-                    `work-${project.index}`,
-                    600,
-                    800
-                  )}
-                  alt=""
-                  fill
-                  sizes="300px"
-                  priority={index < 3}
-                  className={`
+            {projects.map((project, index) => (
+              <Image
+                key={project.name}
+                src={project.imageref ? project.imageref : mockPhoto(`work-${project.index}`, 600, 800)}
+                alt=""
+                fill
+                sizes="300px"
+                priority={index < 3}
+                className={`
                     absolute
                     inset-0
                     object-cover
@@ -849,9 +816,8 @@ export default function Work() {
                         : "scale-[1.04] opacity-0"
                     }
                   `}
-                />
-              )
-            )}
+              />
+            ))}
 
             {/* DARK OVERLAY */}
 
@@ -901,10 +867,7 @@ export default function Work() {
                       font-medium
                     "
                   >
-                    {
-                      projects[hoveredIndex]
-                        .name
-                    }
+                    {projects[hoveredIndex].name}
                   </p>
                 </div>
 
@@ -915,10 +878,7 @@ export default function Work() {
                     text-white/60
                   "
                 >
-                  {
-                    projects[hoveredIndex]
-                      .index
-                  }
+                  {projects[hoveredIndex].index}
                 </span>
               </div>
             )}
@@ -944,9 +904,7 @@ export default function Work() {
             backdrop-blur-md
             md:flex
           "
-          onClick={() =>
-            setSelectedProject(null)
-          }
+          onClick={() => setSelectedProject(null)}
         >
           {/* MODAL CONTENT */}
 
@@ -963,17 +921,13 @@ export default function Work() {
               bg-[#0a0a0a]
               shadow-2xl
             "
-            onClick={(event) =>
-              event.stopPropagation()
-            }
+            onClick={(event) => event.stopPropagation()}
           >
             {/* CLOSE BUTTON */}
 
             <button
               type="button"
-              onClick={() =>
-                setSelectedProject(null)
-              }
+              onClick={() => setSelectedProject(null)}
               aria-label="Close project"
               className="
                 absolute
@@ -1014,12 +968,9 @@ export default function Work() {
                 lg:block
               "
             >
+              
               <Image
-                src={mockPhoto(
-                  `work-${selected.index}`,
-                  1000,
-                  750
-                )}
+                src={selected.imagemainref ? selected.imagemainref: mockPhoto(`work-${selected.index}`, 1000, 750)}
                 alt={selected.name}
                 fill
                 sizes="55vw"
@@ -1104,11 +1055,7 @@ export default function Work() {
                     {selected.category}
                   </p>
 
-                  <span
-                    className="text-gray-700"
-                  >
-                    /
-                  </span>
+                  <span className="text-gray-700">/</span>
 
                   <p
                     className="
@@ -1177,14 +1124,20 @@ export default function Work() {
                   WDX® — Selected Works
                 </span>
 
-                <span
+                <a
+                  href={selected.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="
                     text-xs
                     text-gray-400
+                    transition-colors
+                    duration-300
+                    hover:text-white
                   "
                 >
                   View Project ↗
-                </span>
+                </a>
               </div>
             </div>
           </div>

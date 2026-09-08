@@ -247,7 +247,7 @@ export default function Hero() {
                 lg:text-[7.5vw]
               "
             >
-              Digital experiences <br/> thoughtfully built
+             Where Ideas<br/>Meet The Web
             </motion.h1>
 
             {/* DESCRIPTION */}
