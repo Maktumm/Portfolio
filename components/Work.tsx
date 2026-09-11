@@ -14,6 +14,8 @@ import Blossom from "../public/blossom.png"
 import Blossom1 from "../public/4.bip.2878.png"
 import storyv from "../public/storyvault.png"
 import alba1 from "../public/alva.png"
+import Burgerlab from "../public/lipitlaput.png"
+import Burgerlab1 from "../public/burger1.png"
 type ProjectType = "Frontend" | "Backend" | "Fullstack";
 
 interface Project {
@@ -40,15 +42,15 @@ const projects: Project[] = [
     imagemainref:alba1,
   },
   {
-    index: "02",
-    name: "Story Vault",
-    category: "Web Design",
-    type: "Fullstack",
+     index: "02",
+    name: "BURGERLAB",
+    category: "Resturant Chain",
+    type: "Frontend",
     description:
-      "A fashion-forward digital experience combining expressive typography, immersive imagery, and fluid interactions.",
-    href: "https://storyvaults.netlify.app",
-    imageref: storyvalut,
-    imagemainref:storyv,
+      "A distinctive visual identity balancing organic forms with a structured, modern design system.",
+    href: "https://burger-labs.netlify.app/",
+    imageref:Burgerlab1,
+    imagemainref:Burgerlab,
   },
   {
     index: "03",
@@ -61,14 +63,16 @@ const projects: Project[] = [
     imageref: Blossom,
     imagemainref:Blossom1,
   },
-  {
-    index: "04",
-    name: "Arc & Bloom",
-    category: "Identity Design",
-    type: "Frontend",
+  {index: "04",
+    name: "Story Vault",
+    category: "Web Design",
+    type: "Fullstack",
     description:
-      "A distinctive visual identity balancing organic forms with a structured, modern design system.",
-    href: "https://arc-and-bloom-example.com",
+      "A fashion-forward digital experience combining expressive typography, immersive imagery, and fluid interactions.",
+    href: "https://storyvaults.netlify.app",
+    imageref: storyvalut,
+    imagemainref:storyv,
+   
   },
   {
     index: "05",
